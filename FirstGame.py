@@ -14,10 +14,19 @@ def end():
     con=input('(Press and key to continue)')
     menu()
 
+def coincheck():
+    if coinsentered<=Balance:
+        ck=False
+        return ck
+    else:
+        print('Not enough coins (your balance:',Balance,')')
+        ck=True
+        return ck
+        
 import random
 print('do you want to start(Y/N)')
-c=1
-while c>0:
+ck=True                
+while True:
     ans=input(":")
     ans1=ans.upper()
     if ans1=="N":
@@ -45,12 +54,11 @@ while c>0:
                 rsum=rb1+rb2+rb3
                 print('you got a gift :)')
                 rans=input('(Enter any key to accept)')
-                if True:
-                    print('')
-                    print('you got',rsum,'coins')
-                    Balance+=rsum
-                    end()
-                    continue
+                print('')
+                print('you got',rsum,'coins')
+                Balance+=rsum
+                end()
+                continue
             if Balance==0:
                 print('Game over :/ you lose')
                 print('restart the game to play again')
@@ -61,7 +69,9 @@ while c>0:
                 print('if the number generated matches the number you enter')
                 print('then the coins entered will increase by 300%.')
                 print('')
-                coinsentered=int(input('enter coins:'))
+                while ck:
+                    coinsentered=int(input('enter coins:'))
+                    ck=coincheck()
                 enternum=int(input('Enter num between 1 to 10:'))
                 comnum=random.randint(1,10)
                 if enternum!=comnum:
@@ -82,7 +92,9 @@ while c>0:
                 print('then the coinsenetered will increase by 500%.')
                 print('you will get 5 attempts to guess')
                 print('')
-                coinsentered=int(input('enter coins:'))
+                while ck:
+                    coinsentered=int(input('enter coins:'))
+                    ck=coincheck()
                 randomnum=random.randint(1,100)
                 guessnum=int(input('enter num between 1 to 100:'))
                 if guessnum!=randomnum:
@@ -148,10 +160,12 @@ while c>0:
                 print('The computer will generate a number between')
                 print('1 to 6 three times and sum of three num matches')
                 print('the number you enter then the entered coins will')
-                print('coins will increase by 1000%.')
+                print('increase by 1000%.')
                 print('')
-                coinsentered=int(input('enter coins:'))
-                enternum=int(input("enter number:"))
+                while ck:
+                    coinsentered=int(input('enter coins:'))
+                    ck=coincheck()
+                enternum=int(input("Enter number:"))
                 a=random.randint(1,6)
                 gen=input('enter any key to generate:')
                 if bool(gen) or bool(1):
@@ -182,7 +196,9 @@ while c>0:
                 print("will be subtracted from your balance and if you")
                 print('win then the coinsentered will increase by 500%.')
                 print('')
-                coinsentered=int(input('enter coins:'))
+                while ck:
+                    coinsentered=int(input('enter coins:'))
+                    ck=coincheck() 
                 com=int(random.randint(1,3))
                 if com==1:
                     gcom='stone'
@@ -253,7 +269,9 @@ while c>0:
             elif gamemenu=='5':
                 print('IF YOU GET 3 HEADS YOU WIN')
                 print('')
-                coinsentered=int(input('enter coins:'))
+                while ck:
+                    coinsentered=int(input('enter coins:'))
+                    ck=coincheck()
                 coin1=random.randint(1,2)
                 print('')
                 cans1=input('enter any key to fip a coin:')
@@ -282,7 +300,7 @@ while c>0:
                     elif coin3==2:
                         tcoin3='tails'
                         print('Toss3:',tcoin3)
-                if coin1==coin2==coin3:
+                if coin1==coin2==coin3==1:
                     print('Jackpot! you got 3 heads')
                     print('you won')
                     coinsentered*=5
